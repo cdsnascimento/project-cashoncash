@@ -2,11 +2,18 @@ import Chart from "react-apexcharts";
 
 export const ChartLine = () => {
   const options = {
-    plotOptions: {
-      bar: {
-        horizontal: true,
-      },
+    stroke: {
+      width: [2, 2],
     },
+    colors: ['#047cac', '#e41d35'],
+
+    title: {
+      text: "Chart",
+    },
+    dataLabels: {
+      enabled: true,
+    }
+
   };
 
   const mockData = {
@@ -23,6 +30,7 @@ export const ChartLine = () => {
         data: [-2.1, -4.8, -3.5, -5.0, -10.4],
       },
     ],
+    
   };
 
   return (
