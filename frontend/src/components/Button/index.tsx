@@ -1,15 +1,13 @@
-type ButtonProps = {
-  text?: string | '',
-  colorClass?: string | 'btn-primary',
-}
+import { ButtonHTMLAttributes } from "react";
 
-export const Button = (props: ButtonProps) => {
+import "./styles.scss";
+
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+
+export const Button = (props : ButtonProps) => {
   return (
-    <button 
-      type="button" 
-      className="btn btn-primary"
-    >
-      {props.text}
-    </button>
-  )
-}
+  <button 
+    className="button"
+  {...props} />
+  );
+};
