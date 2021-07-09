@@ -1,5 +1,4 @@
 import { NavBar } from 'components/NavBar';
-import { PageInBuild } from 'components/PageInBuild';
 import imgGlo from '../../assets/images/glo.jpg'
 
 export const Glossario = () => {
