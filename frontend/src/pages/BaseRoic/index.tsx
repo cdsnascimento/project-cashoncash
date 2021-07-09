@@ -1,5 +1,6 @@
 import { NavBar } from 'components/NavBar';
-import { PageInBuild } from 'components/PageInBuild';
+import { Table } from 'components/Table';
+
 
 export const BaseRoic = () => {
   return (
@@ -12,9 +13,8 @@ export const BaseRoic = () => {
 
         <hr />
 
-        <div className="row">
-          <PageInBuild />
-        </div>
+        <Table />
+
       </div>
     </>
     

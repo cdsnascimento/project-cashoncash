@@ -1,5 +1,6 @@
 import { NavBar } from 'components/NavBar';
 import { PageInBuild } from 'components/PageInBuild';
+import imgGlo from '../../assets/images/glo.jpg'
 
 export const Glossario = () => {
   return (
@@ -13,7 +14,7 @@ export const Glossario = () => {
         <hr />
 
         <div className="row">
-          <PageInBuild />
+          <img src={imgGlo} alt="" className="img-fluid" />
         </div>
       </div>
     </>
