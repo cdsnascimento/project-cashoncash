@@ -1,35 +1,35 @@
 package com.dominos.cashoncash.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
-// import javax.persistence.GeneratedValue;
-// import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 @Entity
-public class Store implements Serializable {
+public class Store implements Serializable, ListExcel {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ipPulse;
 	private String nameStore;
 	private Double amountCapexPreop;
+
+	@OneToMany(mappedBy = "store")
+	private List<Cost> cost = new ArrayList<>();
 	
 	public Store() {
 	}
 
-	
 	public Store(Long ipPulse, String nameStore, Double amountCapexPreop) {
 		this.ipPulse = ipPulse;
 		this.nameStore = nameStore;
 		this.amountCapexPreop = amountCapexPreop;
 	}
-
-
 
 	public Long getIpPulse() {
 		return ipPulse;
@@ -53,6 +53,10 @@ public class Store implements Serializable {
 
 	public void setAmountCapexPreop(Double amountCapexPreop) {
 		this.amountCapexPreop = amountCapexPreop;
+	}
+
+	public List<Cost> getCost() {
+		return cost;
 	}
 
 	@Override
@@ -85,8 +89,12 @@ public class Store implements Serializable {
 		return "Store [ipPulse=" + ipPulse + ", nameStore=" + nameStore + ", amountCapexPreop=" + amountCapexPreop
 				+ "]";
 	}
-	
-	
-	
+
+
+	@Override
+	public double importExcel() {
+		
+		return 0;
+	}
 	
 }
