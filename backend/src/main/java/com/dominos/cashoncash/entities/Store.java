@@ -21,6 +21,7 @@ public class Store implements Serializable, ListExcel {
 	@Id
 	private Long ipPulse;
 	private String nameStore;
+	private String nameCluster;
 	private Double amountCapexPreop;
 
 	@JsonIgnore
@@ -30,9 +31,10 @@ public class Store implements Serializable, ListExcel {
 	public Store() {
 	}
 
-	public Store(Long ipPulse, String nameStore, Double amountCapexPreop) {
+	public Store(Long ipPulse, String nameStore, String nameCluster, Double amountCapexPreop) {
 		this.ipPulse = ipPulse;
 		this.nameStore = nameStore;
+		this.nameCluster = nameCluster;
 		this.amountCapexPreop = amountCapexPreop;
 	}
 
@@ -50,6 +52,14 @@ public class Store implements Serializable, ListExcel {
 
 	public void setNameStore(String nameStore) {
 		this.nameStore = nameStore;
+	}
+
+	public String getNameCluster() {
+		return nameCluster;
+	}
+
+	public void setNameCluster(String nameCluster) {
+		this.nameCluster = nameCluster;
 	}
 
 	public Double getAmountCapexPreop() {
@@ -94,7 +104,6 @@ public class Store implements Serializable, ListExcel {
 		return "Store [ipPulse=" + ipPulse + ", nameStore=" + nameStore + ", amountCapexPreop=" + amountCapexPreop
 				+ "]";
 	}
-
 
 	@Override
 	public double importExcel() {

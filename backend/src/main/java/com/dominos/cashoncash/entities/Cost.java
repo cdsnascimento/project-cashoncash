@@ -22,8 +22,7 @@ public class Cost implements Serializable, ListExcel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private Long idPulse;
-
+ 
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
   private Date date;
   private Double amount;
@@ -36,9 +35,8 @@ public class Cost implements Serializable, ListExcel {
   public Cost() {
   }
 
-  public Cost(Long id, Long idPulse, Date date, Double amount, Store loja) {
+  public Cost(Long id, Date date, Double amount, Store loja) {
     this.id = id;
-    this.idPulse = idPulse;
     this.date = date;
     this.amount = amount;
     this.loja = loja;
@@ -66,14 +64,6 @@ public class Cost implements Serializable, ListExcel {
 
   public void setAmount(Double amount) {
     this.amount = amount;
-  }
-
-  public Long getIdPulse() {
-    return idPulse;
-  }
-
-  public void setIdPulse(Long idPulse) {
-    this.idPulse = idPulse;
   }
 
   public Store getLoja() {

@@ -64,6 +64,9 @@ public class CreateExcelListStore {
                     store.setNameStore(cell.getStringCellValue());
                     break;
                   case 2:
+                    store.setNameCluster(cell.getStringCellValue());
+                    break;
+                  case 3:
                     store.setAmountCapexPreop(cell.getNumericCellValue());
                     break;
               }

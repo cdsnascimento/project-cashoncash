@@ -65,7 +65,6 @@ public class CreateExcelListCost {
                     cost.setAmount(cell.getNumericCellValue());
                     break;
                   case 2:
-                    cost.setIdPulse((long) cell.getNumericCellValue());
                     Store newStore = ListStore.stream().filter(s -> s.getIpPulse() == cell.getNumericCellValue()).findFirst().orElse(null);
                     cost.setLoja(newStore);
                     break;
