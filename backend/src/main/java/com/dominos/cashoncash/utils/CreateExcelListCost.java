@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.dominos.cashoncash.entities.Cost;
 import com.dominos.cashoncash.entities.Store;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -13,11 +14,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class CreateExcelList {
+public class CreateExcelListCost {
 
   private String filePath;
 
-  public CreateExcelList(String filePath) {
+  public CreateExcelListCost(String filePath) {
     this.filePath = filePath;
   }
 
@@ -29,9 +30,9 @@ public class CreateExcelList {
     this.filePath = filePath;
   }
 
-  public List<Store> readFileExcel() {
+  public List<Cost> readFileExcel(List<Store> ListStore) {
 
-    List<Store> list = new ArrayList<>();
+    List<Cost> list = new ArrayList<>();
 
     try {
 
@@ -50,23 +51,28 @@ public class CreateExcelList {
         Row row = rowIterator.next();
         Iterator<Cell> cellIterator = row.iterator();
 
-            Store store = new Store();
-            list.add(store);
+            Cost cost = new Cost();
+            list.add(cost);
             while (cellIterator.hasNext()) {
 
               Cell cell = cellIterator.next();
 
               switch (cell.getColumnIndex()) {
                   case 0:
-                    store.setIpPulse( (long) cell.getNumericCellValue());
+                    cost.setDate(cell.getDateCellValue());
                     break;
                   case 1:
-                    store.setNameStore(cell.getStringCellValue());
+                    cost.setAmount(cell.getNumericCellValue());
                     break;
                   case 2:
-                    store.setAmountCapexPreop(cell.getNumericCellValue());
+                    cost.setIdPulse((long) cell.getNumericCellValue());
+                    Store newStore = ListStore.stream().filter(s -> s.getIpPulse() == cell.getNumericCellValue()).findFirst().orElse(null);
+                    cost.setLoja(newStore);
                     break;
+
               }
+
+              
             }
       }
 

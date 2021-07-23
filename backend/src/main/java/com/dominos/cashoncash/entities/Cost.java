@@ -9,41 +9,46 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
+@Table(name = "tb_COST")
 public class Cost implements Serializable, ListExcel {
 
   private static final long serialVersionUID = 1L;
   
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
+  private Long idPulse;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
   private Date date;
   private Double amount;
 
+ 
   @ManyToOne
-  @JoinColumn(name = "store_id")
-  private Store store;
+  @JoinColumn(name = "loja_id_pulse")
+  private Store loja;
 
   public Cost() {
   }
-  
-  public Cost(long id, Date date, Double amount, Store store) {
+
+  public Cost(Long id, Long idPulse, Date date, Double amount, Store loja) {
     this.id = id;
+    this.idPulse = idPulse;
     this.date = date;
     this.amount = amount;
-    this.store = store;
+    this.loja = loja;
   }
 
-  public static long getSerialversionuid() {
-    return serialVersionUID;
-  }
-
-  public long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -63,8 +68,20 @@ public class Cost implements Serializable, ListExcel {
     this.amount = amount;
   }
 
-  public Store getStore() {
-    return store;
+  public Long getIdPulse() {
+    return idPulse;
+  }
+
+  public void setIdPulse(Long idPulse) {
+    this.idPulse = idPulse;
+  }
+
+  public Store getLoja() {
+    return loja;
+  }
+
+  public void setLoja(Store loja) {
+    this.loja = loja;
   }
 
   @Override

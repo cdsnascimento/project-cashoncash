@@ -7,9 +7,13 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
+@Table(name = "tb_STORE")
 public class Store implements Serializable, ListExcel {
 	
 	private static final long serialVersionUID = 1L;
@@ -19,8 +23,9 @@ public class Store implements Serializable, ListExcel {
 	private String nameStore;
 	private Double amountCapexPreop;
 
-	@OneToMany(mappedBy = "store")
-	private List<Cost> cost = new ArrayList<>();
+	@JsonIgnore
+	@OneToMany(mappedBy = "loja")
+	private List<Cost> costs = new ArrayList<>();
 	
 	public Store() {
 	}
@@ -55,8 +60,8 @@ public class Store implements Serializable, ListExcel {
 		this.amountCapexPreop = amountCapexPreop;
 	}
 
-	public List<Cost> getCost() {
-		return cost;
+	public List<Cost> getCosts() {
+		return costs;
 	}
 
 	@Override
