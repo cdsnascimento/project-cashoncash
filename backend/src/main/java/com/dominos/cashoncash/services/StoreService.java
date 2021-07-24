@@ -2,7 +2,9 @@ package com.dominos.cashoncash.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import com.dominos.cashoncash.dto.StoreDTO;
 import com.dominos.cashoncash.entities.Store;
 import com.dominos.cashoncash.repositories.StoreRepository;
 
@@ -15,8 +17,9 @@ public class StoreService {
   @Autowired
   private StoreRepository repository;
 
-  public List<Store> findAll() {
-    return repository.findAll();
+  public List<StoreDTO> findAll() {
+    List<Store> result = repository.findAll();
+    return result.stream().map(x -> new StoreDTO(x)).collect(Collectors.toList());
   }
 
   public Store findById(Long id) {

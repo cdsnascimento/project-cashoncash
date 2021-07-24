@@ -1,13 +1,15 @@
 package com.dominos.cashoncash.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.dominos.cashoncash.dto.CostDTO;
 import com.dominos.cashoncash.entities.Cost;
 import com.dominos.cashoncash.repositories.CostRepository;
+import com.dominos.cashoncash.repositories.StoreRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CostService {
@@ -15,13 +17,14 @@ public class CostService {
   @Autowired
   private CostRepository repository;
 
-  public List<Cost>findAll() {
-    return repository.findAll();
-  }
+  @Autowired
+  private StoreRepository storeRepository;
 
-  public Cost findById(Long id) {
-    Optional<Cost> obj = repository.findById(id);
-    return obj.get();
+  @Transactional(readOnly = true)
+  public Page<CostDTO> findAll(Pageable pageable) {
+    storeRepository.findAll();
+    Page<Cost> result = repository.findAll(pageable);
+    return result.map(x -> new CostDTO(x));
   }
 
 }
